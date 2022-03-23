@@ -4,10 +4,18 @@
 
 // COMMAND ----------
 
-dbutils.fs.mount(
-  source = "wasbs://greathouseblob@greathousegresa.blob.core.windows.net",
-  mountPoint = "/mnt/greathouse",
-  extraConfigs = Map("fs.azure.account.key.greathousegresa.blob.core.windows.net" -> dbutils.secrets.get(scope = "AKV-greatHouse", key = "SAkey1")))
+
+if(dbutils.fs.mounts().count(x=> x.mountPoint == "/mnt/greathouse") == 0){
+  dbutils.fs.mount(
+    source = "wasbs://greathouseblob@greathousegresa.blob.core.windows.net",
+    mountPoint = "/mnt/greathouse",
+    extraConfigs = Map("fs.azure.account.key.greathousegresa.blob.core.windows.net" -> dbutils.secrets.get(scope = "AKV-greatHouse", key = "SAkey1")))  
+} else {
+  print("Already mounted")
+  
+}
+  
+
 
 // COMMAND ----------
 
@@ -31,21 +39,21 @@ val reAdPath = "dbfs:/mnt/greathouse/Real Estate Ad.csv"
 
 val optionsMap = Map("inferSchema"->"true", "header"->"true")
 
-val ghhDistrict = spark.read.options(optionsMap).option("delimiter",";").csv(ghhDistrictPath)
-val ghhStock = spark.read.options(optionsMap).option("delimiter",",").csv(ghhStockPath)
-val rbDistrict = spark.read.options(optionsMap).option("delimiter",",").csv(rbDistrictPath)
-val rbStock = spark.read.options(optionsMap).option("delimiter",",").csv(rbStockPath)
-val reAd = spark.read.options(optionsMap).option("delimiter",",").csv(reAdPath)
+val ghhDistrictDF = spark.read.options(optionsMap).csv(ghhDistrictPath)
+val ghhStockDF = spark.read.options(optionsMap).csv(ghhStockPath)
+val rbDistrictDF = spark.read.options(optionsMap).csv(rbDistrictPath)
+val rbStockDF = spark.read.options(optionsMap).csv(rbStockPath)
+val reAdDF = spark.read.options(optionsMap).csv(reAdPath)
 
 // COMMAND ----------
 
-display(ghhDistrict)
-//display(ghhStock)
-//display(rbDistrict)
-//display(rbStock)
-//display(reAd)
+display(ghhDistrictDF)
+//display(ghhStockDF)
+//display(rbDistrictDF)
+//display(rbStockDF)
+//display(reAdDF)
 
 // COMMAND ----------
 
 // DBTITLE 1,To Unmount the blob storage
-//dbutils.fs.unmount("/mnt/greathouse")
+dbutils.fs.unmount("/mnt/greathouse")

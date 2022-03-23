@@ -1,0 +1,27 @@
+{
+	"name": "GHH_Stock_AFS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureFileStorage_GreatHouse",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureFileStorageLocation",
+				"fileName": "Stock GreatHouse Holdings.csv"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "longitude;latitude;Rooms;Bedrooms;price;house id",
+				"type": "String"
+			}
+		]
+	}
+}

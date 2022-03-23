@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "GreatHouse Holdings District.csv",
 				"container": "greathouseblob"
 			},
 			"columnDelimiter": ",",

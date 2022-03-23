@@ -12,14 +12,18 @@
 				"type": "AzureFileStorageLocation",
 				"fileName": "GreatHouse Holdings District.csv"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": ";",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
 		"schema": [
 			{
-				"name": "longitude;latitude",
+				"name": "longitude",
+				"type": "String"
+			},
+			{
+				"name": "latitude",
 				"type": "String"
 			}
 		]

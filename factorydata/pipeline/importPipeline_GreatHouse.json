@@ -38,12 +38,14 @@
 						}
 					},
 					"sink": {
-						"type": "ParquetSink",
+						"type": "DelimitedTextSink",
 						"storeSettings": {
 							"type": "AzureBlobStorageWriteSettings"
 						},
 						"formatSettings": {
-							"type": "ParquetWriteSettings"
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".csv"
 						}
 					},
 					"enableStaging": false,
@@ -57,7 +59,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_fia",
+						"referenceName": "DelimitedText1",
 						"type": "DatasetReference"
 					}
 				]

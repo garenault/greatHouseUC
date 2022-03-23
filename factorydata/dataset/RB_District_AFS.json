@@ -1,0 +1,27 @@
+{
+	"name": "RB_District_AFS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureFileStorage_GreatHouse",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureFileStorageLocation",
+				"fileName": "Roger&Brothers District.csv"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "longitude;latitude",
+				"type": "String"
+			}
+		]
+	}
+}

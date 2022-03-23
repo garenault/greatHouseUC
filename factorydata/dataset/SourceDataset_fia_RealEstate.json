@@ -1,0 +1,63 @@
+{
+	"name": "SourceDataset_fia_RealEstate",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureFileStorage_GreatHouse",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureFileStorageLocation",
+				"fileName": "Real Estate Ad.csv"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "longitude",
+				"type": "String"
+			},
+			{
+				"name": "latitude",
+				"type": "String"
+			},
+			{
+				"name": "housing_median_age",
+				"type": "String"
+			},
+			{
+				"name": "total_rooms",
+				"type": "String"
+			},
+			{
+				"name": "total_bedrooms",
+				"type": "String"
+			},
+			{
+				"name": "population",
+				"type": "String"
+			},
+			{
+				"name": "households",
+				"type": "String"
+			},
+			{
+				"name": "median_income",
+				"type": "String"
+			},
+			{
+				"name": "median_house_value",
+				"type": "String"
+			},
+			{
+				"name": "ocean_proximity",
+				"type": "String"
+			}
+		]
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"name": "DestinationDataset_fia",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage_GreatHouse",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "greathouse-blob"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

@@ -10,7 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureFileStorageLocation",
-				"fileName": "Real Estate Ad.csv"
+				"fileName": "Real Estate Ad.csv",
+				"folderPath": "ad"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

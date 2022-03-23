@@ -71,46 +71,6 @@
 									"name": "latitude",
 									"type": "String"
 								}
-							},
-							{
-								"source": {
-									"name": "Rooms",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Rooms",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Bedrooms",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Bedrooms",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "price",
-									"type": "String"
-								},
-								"sink": {
-									"name": "price",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "house id",
-									"type": "String"
-								},
-								"sink": {
-									"name": "house id",
-									"type": "String"
-								}
 							}
 						]
 					}

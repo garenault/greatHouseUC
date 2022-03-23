@@ -29,7 +29,6 @@
 						"storeSettings": {
 							"type": "AzureFileStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "Stock GreatHouse Holdings.csv",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -40,8 +39,7 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings",
-							"copyBehavior": "MergeFiles"
+							"type": "AzureBlobStorageWriteSettings"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",

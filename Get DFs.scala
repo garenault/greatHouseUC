@@ -1,0 +1,51 @@
+// Databricks notebook source
+// MAGIC %md
+// MAGIC # Mount Azure Blob Storage with all the files
+
+// COMMAND ----------
+
+dbutils.fs.mount(
+  source = "wasbs://greathouseblob@greathousegresa.blob.core.windows.net",
+  mountPoint = "/mnt/greathouse",
+  extraConfigs = Map("fs.azure.account.key.greathousegresa.blob.core.windows.net" -> dbutils.secrets.get(scope = "AKV-greatHouse", key = "SAkey1")))
+
+// COMMAND ----------
+
+// DBTITLE 1,List all files
+display(dbutils.fs.ls("/mnt/greathouse/"))
+
+// COMMAND ----------
+
+// MAGIC %md
+// MAGIC # Create all dataframes for each files
+
+// COMMAND ----------
+
+val ghhDistrictPath = "dbfs:/mnt/greathouse/GreatHouse Holdings District.csv"
+val ghhStockPath = "dbfs:/mnt/greathouse/Stock GreatHouse Holdings.csv"
+val rbDistrictPath = "dbfs:/mnt/greathouse/Roger&Brothers District.csv"
+val rbStockPath = "dbfs:/mnt/greathouse/Stock Roger&Brothers.csv"
+val reAdPath = "dbfs:/mnt/greathouse/Real Estate Ad.csv"
+
+// COMMAND ----------
+
+val optionsMap = Map("inferSchema"->"true", "header"->"true")
+
+val ghhDistrict = spark.read.options(optionsMap).option("delimiter",";").csv(ghhDistrictPath)
+val ghhStock = spark.read.options(optionsMap).option("delimiter",",").csv(ghhStockPath)
+val rbDistrict = spark.read.options(optionsMap).option("delimiter",",").csv(rbDistrictPath)
+val rbStock = spark.read.options(optionsMap).option("delimiter",",").csv(rbStockPath)
+val reAd = spark.read.options(optionsMap).option("delimiter",",").csv(reAdPath)
+
+// COMMAND ----------
+
+display(ghhDistrict)
+//display(ghhStock)
+//display(rbDistrict)
+//display(rbStock)
+//display(reAd)
+
+// COMMAND ----------
+
+// DBTITLE 1,To Unmount the blob storage
+//dbutils.fs.unmount("/mnt/greathouse")

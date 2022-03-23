@@ -28,7 +28,7 @@
 						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureFileStorageReadSettings",
-							"recursive": true,
+							"recursive": false,
 							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
@@ -116,7 +116,6 @@
 						"storeSettings": {
 							"type": "AzureFileStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "Real Estate Ad.csv",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -127,8 +126,7 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings",
-							"copyBehavior": "MergeFiles"
+							"type": "AzureBlobStorageWriteSettings"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",

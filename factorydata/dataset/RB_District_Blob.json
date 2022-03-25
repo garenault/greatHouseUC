@@ -1,0 +1,29 @@
+{
+	"name": "RB_District_Blob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage_GreatHouse",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Roger&Brothers District.csv",
+				"folderPath": "bronze",
+				"container": "greathouseblob"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "longitude;latitude",
+				"type": "String"
+			}
+		]
+	}
+}

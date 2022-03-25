@@ -1,0 +1,31 @@
+{
+	"name": "GHH_District_AFS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureFileStorage_GreatHouse",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureFileStorageLocation",
+				"fileName": "GreatHouse Holdings District.csv"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "longitude",
+				"type": "String"
+			},
+			{
+				"name": "latitude",
+				"type": "String"
+			}
+		]
+	}
+}

@@ -1,17 +1,20 @@
 // Databricks notebook source
-// MAGIC %run "./Get DFs"
+// MAGIC %run "./MountBlobContainer"
 
 // COMMAND ----------
 
-val silverStockPath = "/mnt/greathouse/silver/stock.parquet"
-val silverDistrictPath = "/mnt/greathouse/silver/district.parquet"
+// DBTITLE 1,Create Dataframe from silver files
+val stockDF = spark.read.parquet(silverStockPath).withColumnRenamed("longitude", "longitudeStock").withColumnRenamed("latitude", "latitudeStock")
+val districtDF = spark.read.parquet(silverDistrictPath).withColumnRenamed("longitude", "longitudeDistrict").withColumnRenamed("latitude", "latitudeDistrict")
+
+// COMMAND ----------
+
+spark.sql("CREATE DATABASE IF NOT EXISTS greathousegold;")
 
 // COMMAND ----------
 
 // DBTITLE 1,•	Analyse the average price per nomber of rooms
 import org.apache.spark.sql.functions.col
-
-val stockDF = spark.read.parquet(silverStockPath)
 
 val avgPriceByRoomsDF = stockDF
                         .groupBy( col("Rooms") )
@@ -21,11 +24,11 @@ val avgPriceByRoomsDF = stockDF
 
 // COMMAND ----------
 
-display(avgPriceByRoomsDF)
+avgPriceByRoomsDF.show(5)
 
 // COMMAND ----------
 
-avgPriceByRoomsDF.write.format("parquet").saveAsTable("avgPriceByRooms")
+avgPriceByRoomsDF.write.format("parquet").mode(SaveMode.Overwrite).saveAsTable("greathousegold.avgPriceByRooms")
 
 // COMMAND ----------
 
@@ -50,11 +53,11 @@ val groupedDF = allDF.groupBy(col("latitudeDistrict"), col("longitudeDistrict"))
 
 // COMMAND ----------
 
-display(groupedDF)
+groupedDF.show(5)
 
 // COMMAND ----------
 
-groupedDF.write.format("parquet").saveAsTable("minMaxAvgPriceByDistrict")
+groupedDF.write.format("parquet").mode(SaveMode.Overwrite).saveAsTable("greathousegold.minMaxAvgPriceByDistrict")
 
 // COMMAND ----------
 
@@ -63,11 +66,11 @@ val houseMostInMarketDF = stockDF.groupBy(col("Rooms"), col("Bedrooms")).count()
 
 // COMMAND ----------
 
-display(houseMostInMarketDF)
+houseMostInMarketDF.show(5)
 
 // COMMAND ----------
 
-houseMostInMarketDF.write.format("parquet").saveAsTable("houseMostInMarket")
+houseMostInMarketDF.write.format("parquet").mode(SaveMode.Overwrite).saveAsTable("greathousegold.houseMostInMarket")
 
 // COMMAND ----------
 
@@ -76,11 +79,11 @@ val houseDetailByPriceDF = stockDF.select("price","Rooms","Bedrooms").orderBy(co
 
 // COMMAND ----------
 
-display(houseDetailByPriceDF.where(col("price") > 0 && col("price") < 1000))
+houseDetailByPriceDF.where(col("price") > 0 && col("price") < 1000).show(5)
 
 // COMMAND ----------
 
-houseDetailByPriceDF.write.format("parquet").saveAsTable("houseDetailByPrice")
+houseDetailByPriceDF.write.format("parquet").mode(SaveMode.Overwrite).saveAsTable("greathousegold.houseDetailByPrice")
 
 // COMMAND ----------
 

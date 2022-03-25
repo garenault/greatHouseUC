@@ -4,6 +4,7 @@
 
 // COMMAND ----------
 
+// DBTITLE 1,Mount blob storage
 
 if(dbutils.fs.mounts().count(x=> x.mountPoint == "/mnt/greathouse") == 0){
   dbutils.fs.mount(
@@ -19,16 +20,7 @@ if(dbutils.fs.mounts().count(x=> x.mountPoint == "/mnt/greathouse") == 0){
 
 // COMMAND ----------
 
-// DBTITLE 1,List all files
-display(dbutils.fs.ls("/mnt/greathouse/"))
-
-// COMMAND ----------
-
-// MAGIC %md
-// MAGIC # Create all dataframes for each files
-
-// COMMAND ----------
-
+// DBTITLE 1,List all paths of files in Bronze storage
 val ghhDistrictPath = "dbfs:/mnt/greathouse/bronze/GreatHouse Holdings District.csv"
 val ghhStockPath = "dbfs:/mnt/greathouse/bronze/Stock GreatHouse Holdings.csv"
 val rbDistrictPath = "dbfs:/mnt/greathouse/bronze/Roger&Brothers District.csv"
@@ -37,21 +29,9 @@ val reAdPath = "dbfs:/mnt/greathouse/bronze/Real Estate Ad.csv"
 
 // COMMAND ----------
 
-val optionsMap = Map("inferSchema"->"true", "header"->"true")
-
-val ghhDistrictDF = spark.read.options(optionsMap).csv(ghhDistrictPath)
-val ghhStockDF = spark.read.options(optionsMap).csv(ghhStockPath)
-val rbDistrictDF = spark.read.options(optionsMap).csv(rbDistrictPath)
-val rbStockDF = spark.read.options(optionsMap).csv(rbStockPath)
-val reAdDF = spark.read.options(optionsMap).csv(reAdPath)
-
-// COMMAND ----------
-
-display(ghhDistrictDF)
-//display(ghhStockDF)
-//display(rbDistrictDF)
-//display(rbStockDF)
-//display(reAdDF)
+// DBTITLE 1,List paths of silver Storage
+val silverDistrictPath = "/mnt/greathouse/silver/district.parquet"
+val silverStockPath = "/mnt/greathouse/silver/stock.parquet"
 
 // COMMAND ----------
 

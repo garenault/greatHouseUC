@@ -1,5 +1,16 @@
 // Databricks notebook source
-// MAGIC %run "./Get DFs"
+// MAGIC %run "./MountBlobContainer"
+
+// COMMAND ----------
+
+// DBTITLE 1,Create Dataframe from files in bronze storage
+val optionsMap = Map("inferSchema"->"true", "header"->"true")
+
+val ghhDistrictDF = spark.read.options(optionsMap).csv(ghhDistrictPath)
+val ghhStockDF = spark.read.options(optionsMap).csv(ghhStockPath)
+val rbDistrictDF = spark.read.options(optionsMap).csv(rbDistrictPath)
+val rbStockDF = spark.read.options(optionsMap).csv(rbStockPath)
+val reAdDF = spark.read.options(optionsMap).csv(reAdPath)
 
 // COMMAND ----------
 
@@ -32,22 +43,20 @@ stockDFPrice.show(5)
 
 // COMMAND ----------
 
-val fileName = "/mnt/greathouse/silver/district.parquet"
-print("Output location: " + fileName)
+print("Output location: " + silverDistrictPath)
 
 (districtDF.write                  // Our DataFrameWriter
   .option("compression", "snappy") // One of none, snappy, gzip, and lzo
   .mode("overwrite")               // Replace existing files
-  .parquet(fileName)               // Write DataFrame to Parquet files
+  .parquet(silverDistrictPath)     // Write DataFrame to Parquet files
 )
 
 // COMMAND ----------
 
-val fileName = "/mnt/greathouse/silver/stock.parquet"
-print("Output location: " + fileName)
+print("Output location: " + silverStockPath)
 
-(stockDFPrice.write                  // Our DataFrameWriter
+(stockDFPrice.write                // Our DataFrameWriter
   .option("compression", "snappy") // One of none, snappy, gzip, and lzo
   .mode("overwrite")               // Replace existing files
-  .parquet(fileName)               // Write DataFrame to Parquet files
+  .parquet(silverStockPath)        // Write DataFrame to Parquet files
 )

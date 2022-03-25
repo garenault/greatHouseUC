@@ -29,11 +29,11 @@ display(dbutils.fs.ls("/mnt/greathouse/"))
 
 // COMMAND ----------
 
-val ghhDistrictPath = "dbfs:/mnt/greathouse/GreatHouse Holdings District.csv"
-val ghhStockPath = "dbfs:/mnt/greathouse/Stock GreatHouse Holdings.csv"
-val rbDistrictPath = "dbfs:/mnt/greathouse/Roger&Brothers District.csv"
-val rbStockPath = "dbfs:/mnt/greathouse/Stock Roger&Brothers.csv"
-val reAdPath = "dbfs:/mnt/greathouse/Real Estate Ad.csv"
+val ghhDistrictPath = "dbfs:/mnt/greathouse/bronze/GreatHouse Holdings District.csv"
+val ghhStockPath = "dbfs:/mnt/greathouse/bronze/Stock GreatHouse Holdings.csv"
+val rbDistrictPath = "dbfs:/mnt/greathouse/bronze/Roger&Brothers District.csv"
+val rbStockPath = "dbfs:/mnt/greathouse/bronze/Stock Roger&Brothers.csv"
+val reAdPath = "dbfs:/mnt/greathouse/bronze/Real Estate Ad.csv"
 
 // COMMAND ----------
 
@@ -56,4 +56,4 @@ display(ghhDistrictDF)
 // COMMAND ----------
 
 // DBTITLE 1,To Unmount the blob storage
-dbutils.fs.unmount("/mnt/greathouse")
+//dbutils.fs.unmount("/mnt/greathouse")

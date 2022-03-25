@@ -1,0 +1,13 @@
+{
+	"name": "GreatHouse_Workspace",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "https://adb-8278602443504829.9.azuredatabricks.net",
+			"existingClusterId": "0323-112457-3bq6ilx6",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEM4MjhBNEU3LTI2NUYtNDhCRS1CMTEzLTc4NzRGRkE2REQ0OF9mY2Q0NDA1Yy03MDQ0LTQ2YWQtYmJhOS00NTMwN2M2YTZjODAiDQp9"
+		}
+	}
+}

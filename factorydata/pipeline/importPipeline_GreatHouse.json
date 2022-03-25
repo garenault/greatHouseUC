@@ -613,6 +613,84 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "CleanData",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Copy GHH District",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Copy GHH Stock",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Copy RB District",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Copy RB Stock",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Copy RE Ad",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Repos/gael.renault@avanade.com/greatHouseUC/CleanData"
+				},
+				"linkedServiceName": {
+					"referenceName": "GreatHouse_Workspace",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "KPI_Calculation",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "CleanData",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Repos/gael.renault@avanade.com/greatHouseUC/KPI_calculation"
+				},
+				"linkedServiceName": {
+					"referenceName": "GreatHouse_Workspace",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []

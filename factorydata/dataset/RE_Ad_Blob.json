@@ -11,6 +11,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "Real Estate Ad.csv",
+				"folderPath": "bronze",
 				"container": "greathouseblob"
 			},
 			"columnDelimiter": ",",

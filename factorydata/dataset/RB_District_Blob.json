@@ -11,6 +11,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "Roger&Brothers District.csv",
+				"folderPath": "bronze",
 				"container": "greathouseblob"
 			},
 			"columnDelimiter": ",",
